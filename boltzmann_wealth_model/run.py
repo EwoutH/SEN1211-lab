@@ -1,4 +1,4 @@
-from model import BoltzmannWealthModel
+from boltzmann_wealth_model.model import BoltzmannWealthModel
 
 # Initialize model
 test_model = BoltzmannWealthModel(5, 10, 10)

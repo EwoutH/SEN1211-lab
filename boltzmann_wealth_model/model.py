@@ -5,10 +5,10 @@ from mesa.time import RandomActivation
 from mesa.datacollection import DataCollector
 
 # Local functions and classes
-from agent import MoneyAgent
+from boltzmann_wealth_model.agent import MoneyAgent
 
 # No setup functions yet
-from run_functions import compute_gini
+from boltzmann_wealth_model.step_functions import compute_gini
 
 
 class BoltzmannWealthModel(Model):
