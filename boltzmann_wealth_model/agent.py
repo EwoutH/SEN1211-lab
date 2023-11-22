@@ -8,25 +8,19 @@ class MoneyAgent(Agent):
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         self.wealth = 1
-
-    def move(self):
-        possible_steps = self.model.grid.get_neighborhood(
-            self.pos, moore=True, include_center=False
-        )
-        new_position = self.random.choice(possible_steps)
-        self.model.grid.move_agent(self, new_position)
-
-    def give_money(self):
-        cellmates = self.model.grid.get_cell_list_contents([self.pos])
-        cellmates.pop(
-            cellmates.index(self)
-        )  # Ensure agent is not giving money to itself
-        if len(cellmates) > 0:
-            other = self.random.choice(cellmates)
-            other.wealth += 1
-            self.wealth -= 1
+        self.max_take_money = 10
 
     def step(self):
-        self.move()
-        if self.wealth > 0:
-            self.give_money()
+        other_agent = self.random.choice(self.model.schedule.agents)
+        money_to_take = self.random.randrange(self.max_take_money)
+
+        available_to_take = other_agent.wealth
+
+        if available_to_take >= money_to_take:
+            other_agent.wealth -= money_to_take
+            self.wealth += money_to_take
+        else:
+            # take all they have
+            self.wealth += other_agent.wealth
+            other_agent.wealth = 0
+
