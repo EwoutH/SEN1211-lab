@@ -48,5 +48,7 @@ jobs:
     - name: Install Mesa and pytest
       run: pip install mesa pytest
     - name: Test with Pytest
-      run: pytest
-      # working-directory: boltzmann_wealth_model
+      run: |
+        export PYTHONPATH=$GITHUB_WORKSPACE
+        pytest
+      working-directory: boltzmann_wealth_model
