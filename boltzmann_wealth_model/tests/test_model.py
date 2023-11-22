@@ -28,7 +28,12 @@ class TestBoltzmannWealthModel:
     # Step tests
     def test_constant_money(self):
         """Test if the amount of money stays constant during a step in the model."""
-        # Placeholder
+        model = BoltzmannWealthModel(100, 10, 10)
+        initial_money = sum([agent.wealth for agent in model.schedule.agents])
+        for _ in range(100):
+            model.step()
+        final_money = sum([agent.wealth for agent in model.schedule.agents])
+        assert initial_money == final_money
 
     def test_each_agent_moved(self):
         """Test if each agent moves during a step in the model."""
