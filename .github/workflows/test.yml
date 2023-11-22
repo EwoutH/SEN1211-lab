@@ -16,7 +16,8 @@ jobs:
     - name: Install Mesa
       run: pip install mesa
     - name: Run model
-      run: python boltzmann_wealth_model/run.py
+      run: python run.py
+      working-directory: boltzmann_wealth_model
 
   pytest:
     runs-on: ubuntu-latest
@@ -26,7 +27,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.12"
-    - name: Install Mesa
-      run: pip install mesa
+    - name: Install Mesa and pytest
+      run: pip install mesa pytest
     - name: Test with Pytest
       run: pytest
