@@ -26,7 +26,7 @@ jobs:
       run: pip install mesa
     - name: Run model
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+        export PYTHONPATH=$GITHUB_WORKSPACE
         python run.py
       working-directory: boltzmann_wealth_model
 
@@ -51,6 +51,6 @@ jobs:
       run: pip install mesa pytest
     - name: Test with Pytest
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+        export PYTHONPATH=$GITHUB_WORKSPACE
         pytest
       working-directory: boltzmann_wealth_model
