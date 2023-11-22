@@ -31,3 +31,4 @@ jobs:
       run: pip install mesa pytest
     - name: Test with Pytest
       run: pytest
+      working-directory: boltzmann_wealth_model
