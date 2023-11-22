@@ -24,6 +24,8 @@ jobs:
           ${{ runner.os }}-python-cache-run-
     - name: Install Mesa
       run: pip install mesa
+    - name: Install Project
+      run: pip install -e .
     - name: Run model
       run: python boltzmann_wealth_model/run.py
       # working-directory: boltzmann_wealth_model
@@ -47,8 +49,8 @@ jobs:
           ${{ runner.os }}-python-cache-pytest-
     - name: Install Mesa and pytest
       run: pip install mesa pytest
+    - name: Install Project
+      run: pip install -e .
     - name: Test with Pytest
-      run: |
-        export PYTHONPATH=$GITHUB_WORKSPACE
-        pytest
-      working-directory: boltzmann_wealth_model
+      run: pytest
+      # working-directory: boltzmann_wealth_model
