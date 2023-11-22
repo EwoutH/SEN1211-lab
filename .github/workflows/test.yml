@@ -13,6 +13,15 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.12"
+    - name: Get the current date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Cache Python packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-python-cache-run-${{ steps.date.outputs.date }}
+        restore-keys: |
+          ${{ runner.os }}-python-cache-run-
     - name: Install Mesa
       run: pip install mesa
     - name: Run model
@@ -27,6 +36,15 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.12"
+    - name: Get the current date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Cache Python packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-python-cache-pytest-${{ steps.date.outputs.date }}
+        restore-keys: |
+          ${{ runner.os }}-python-cache-pytest-
     - name: Install Mesa and pytest
       run: pip install mesa pytest
     - name: Test with Pytest
