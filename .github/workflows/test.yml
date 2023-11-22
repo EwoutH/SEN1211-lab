@@ -27,7 +27,7 @@ jobs:
     - name: Run model
       run: |
         echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-        run.py
+        python run.py
       working-directory: boltzmann_wealth_model
 
   pytest:
