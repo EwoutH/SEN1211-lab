@@ -23,8 +23,10 @@ class MoneyAgent(Agent):
         )  # Ensure agent is not giving money to itself
         if len(cellmates) > 0:
             # Check if transaction succeeds based on model parameter
-            transaction_success = self.random.random() > self.model.chance_transaction_failure
-            
+            transaction_success = (
+                self.random.random() > self.model.chance_transaction_failure
+            )
+
             if transaction_success:
                 other = self.random.choice(cellmates)
                 other.wealth += 1
