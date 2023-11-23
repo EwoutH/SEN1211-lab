@@ -7,7 +7,7 @@ class MoneyAgent(Agent):
 
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
-        self.wealth = 1
+        self.wealth = 3
 
     def move(self):
         possible_steps = self.model.grid.get_neighborhood(
