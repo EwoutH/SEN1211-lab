@@ -19,13 +19,15 @@ class BoltzmannWealthModel(Model):
     highly skewed distribution of wealth.
     """
 
-    def __init__(self, N=100, width=10, height=10):
+    def __init__(self, N=100, width=10, height=10, chance_transaction_failure=0.0):
         self.num_agents = N
         self.grid = MultiGrid(width, height, True)
         self.schedule = RandomActivation(self)
         self.datacollector = DataCollector(
             model_reporters={"Gini": compute_gini}, agent_reporters={"Wealth": "wealth"}
         )
+        self.chance_transaction_failure = chance_transaction_failure
+
         # Create agents
         for i in range(self.num_agents):
             a = MoneyAgent(i, self)
