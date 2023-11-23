@@ -22,9 +22,13 @@ class MoneyAgent(Agent):
             cellmates.index(self)
         )  # Ensure agent is not giving money to itself
         if len(cellmates) > 0:
-            other = self.random.choice(cellmates)
-            other.wealth += 1
-            self.wealth -= 1
+            # Check if transaction succeeds based on model parameter
+            transaction_success = self.random.random() > self.model.chance_transaction_failure
+            
+            if transaction_success:
+                other = self.random.choice(cellmates)
+                other.wealth += 1
+                self.wealth -= 1
 
     def step(self):
         self.move()
