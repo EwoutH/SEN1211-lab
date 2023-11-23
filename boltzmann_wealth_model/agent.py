@@ -8,6 +8,7 @@ class MoneyAgent(Agent):
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         self.wealth = 1
+        self.wealth_received = 0
 
     def move(self):
         possible_steps = self.model.grid.get_neighborhood(
@@ -24,6 +25,7 @@ class MoneyAgent(Agent):
         if len(cellmates) > 0:
             other = self.random.choice(cellmates)
             other.wealth += 1
+            other.wealth_received += 1
             self.wealth -= 1
 
     def step(self):
