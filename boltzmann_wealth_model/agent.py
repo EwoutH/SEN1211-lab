@@ -28,7 +28,6 @@ class MoneyAgent(Agent):
             other.wealth_received += 1
             self.wealth -= 1
 
-
     def step(self):
         self.move()
         if self.wealth > 0:

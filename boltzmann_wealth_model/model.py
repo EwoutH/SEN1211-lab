@@ -24,8 +24,8 @@ class BoltzmannWealthModel(Model):
         self.grid = MultiGrid(width, height, True)
         self.schedule = RandomActivation(self)
         self.datacollector = DataCollector(
-            model_reporters={"Gini": compute_gini}, agent_reporters={"Wealth": "wealth",
-                                                                     "Wealth received": "wealth_received"}
+            model_reporters={"Gini": compute_gini},
+            agent_reporters={"Wealth": "wealth", "Wealth received": "wealth_received"},
         )
         # Create agents
         for i in range(self.num_agents):
